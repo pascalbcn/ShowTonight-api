@@ -1,0 +1,54 @@
+<h1>Games</h1>
+
+<table class="table">
+ <thead>
+   <th>id</th>
+   <th>team_A</th>
+   <th>team_B</th>
+   <th>date</th>
+   <th>stadium</th>
+   <th>league</th>
+   <th>Actions</th>
+ </thead>
+
+  {{#list Games}}
+
+  <tr>
+    <td>
+      <a class="btn btn-secondary btn-sm" href="/Games/id/{{id}}" role="button">
+        {{id}}
+      </a>
+    </td>
+    <td>
+      {{team_A}}
+    </td>
+    <td>
+      {{team_B}}
+    </td>
+    <td>
+      {{date}}
+    </td>
+    <td>
+      {{stadium}}
+    </td>
+    <td>
+      {{league}}
+    </td>
+    <td>
+      <a class="btn btn-outline-secondary btn-sm" href="/Games/update/{{id}}" role="button">
+        Update
+      </a>
+      <a class="btn btn-outline-danger btn-sm" href="/Games/delete/{{id}}" role="button">
+        Delete
+      </a>
+    </td>
+  </tr>
+
+  {{/list}}
+</table>
+
+<div class="text-center">
+  <a class="btn btn-primary" href="/Games/create" role="button">
+    Add a Game
+  </a>
+</div>

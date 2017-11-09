@@ -1,51 +1,57 @@
-// Model de la route '/bookings'
+// Model de la route '/bets'
 
 import mongoose from "mongoose";
 mongoose.Promise = global.Promise;
 
 let Schema = new mongoose.Schema({
+  id: { type: Number }, // le numero du pari
   username: { type: String }, // le nom de l'utilisateur
-  showId: { type: String },   // l'id du show
-  seats: { type: Number },    // le nombre de places achetées
+  GameId: { type: Number },   // l'id du show
+     // je ne sais pas comment écrire la partie won comme elle est vide au départ
+  bet: { type: String }, // le detail du pari
   createdAt: { type: Date },  // la date de création de la réservation
   updatedAt: { type: Date },  // la date de modification de la réservation
 });
 
-let Model = mongoose.model('Booking', Schema);
+let Model = mongoose.model('Bet', Schema);
 
 export default {
-  getBookings: () => {
+  getBets: () => {
     return Model.find({}).exec();
   },
 
-  getBooking: (_id) => {
+  getBet: (_id) => {
     return Model.findOne({ _id }).exec();
   },
 
-  createBooking: (booking) => {
+  createBet: (bet) => {
     return Model.create({
-      username: booking.username,
-      showId: booking.showId,
-      seats: booking.seats,
+      id: bet.id,
+      username: bet.username,
+      gameId: bet.gameId,
+      
+      bet: bet.bet,
       createdAt: new Date(),
       updatedAt: new Date(),
     });
   },
 
-  updateBooking: (_id, booking) => {
+  updateBet: (_id, bet) => {
     return Model.findOneAndUpdate({ _id }, {
-      username: booking.username,
-      showId: booking.showId,
-      seats: booking.seats,
+      id: bet.id,
+      username: bet.username,
+      gameId: bet.gameId,
+      
+      bet: bet.bet,
       updatedAt: new Date(),
     }, {upsert: true}).exec();
   },
 
-  deleteBookings: () => {
+  deleteBets: () => {
     return Model.remove({}).exec();
   },
 
-  deleteBooking: (_id) => {
+  deleteBet: (_id) => {
     return Model.remove({ _id }).exec();
   },
 };

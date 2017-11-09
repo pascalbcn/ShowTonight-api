@@ -1,19 +1,17 @@
-// Controller de la route '/shows'
+// Controller de la route '/Games'
 import Errors from "../helpers/Errors";
 
 // Récupération du model
-import ShowModel from "../models/ShowModel";
-import BookingModel from "../models/BookingModel";
+import GameModel from "../models/GameModel";
 
 export default {
   seedDb: (req, res) => {
     return Promise.all([
-      ShowModel.deleteShows(),
-      BookingModel.deleteBookings(),
+      GameModel.deleteGames(),
     ])
     .then((data) => {
       return Promise.all([
-        ShowModel.seedShows(),
+        GameModel.seedGames(),
       ]);
     })
     .then((data) => {

@@ -8,6 +8,6 @@ export default {
 
   // Controller des Apis
   getIndexApi: (req, res) => {
-    res.status(200).send('hello world');
+    res.status(200).send('bienvenue sur betpic');
   },
 };

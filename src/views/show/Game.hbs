@@ -1,0 +1,24 @@
+<h1>Game</h1>
+
+<div>
+  <div>id : {{Game.id}}</div>
+  <div>team_A : {{Game.team_A}}</div>
+  <div>team_B : {{Game.team_B}}</div>
+  <div>date : {{Game.date}}</div>
+  <div>stadium : {{Game.stadium}}</div>
+  <div>league : {{Game.league}}</div>
+  <div>goals_team_A : {{Game.goals_team_A}}</div>
+  <div>goals_team_B : {{Game.goals_team_B}}</div>
+</div>
+
+<div class="text-center">
+  <a class="btn btn-primary" href="/Games/create" role="button">
+    Add a Game
+  </a>
+  <a class="btn btn-secondary" href="/Games/update/{{Game.id}}" role="button">
+    Update
+  </a>
+  <a class="btn btn-danger" href="/Games/delete/{{Game.id}}" role="button">
+    Delete
+  </a>
+</div>

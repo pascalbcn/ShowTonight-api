@@ -1,0 +1,54 @@
+<h1>Update Game</h1>
+
+<form action="/Games/update/{{Game.id}}" method="post">
+  <div class="form-group">
+    <label for="name">Name*</label>
+    <input value="{{Game.name}}" class="form-control" type="text" id="name" name="name" placeholder="Nom du concert" required>
+  </div>
+
+  <div class="form-group">
+    <label for="venue">Venue*</label>
+    <input value="{{Game.venue}}" class="form-control" type="text" id="venue" name="venue" placeholder="Nom de la salle" required>
+  </div>
+
+  <div class="form-group">
+    <label for="description">Description</label>
+    <input value="{{Game.description}}" class="form-control" type="text" id="description" name="description" placeholder="Description du concert">
+  </div>
+
+  <div class="form-group">
+    <label for="capacity">Capacity</label>
+    <input value="{{Game.capacity}}" class="form-control" type="number" id="capacity" name="capacity" placeholder="Ex: 500">
+  </div>
+
+  <div class="form-group">
+    <label for="price">Price*</label>
+    <input value="{{Game.price}}" class="form-control" type="number" id="price" name="price" placeholder="Ex: 30" required>
+  </div>
+
+  <div class="form-group">
+    <label for="image">Image</label>
+    <input value="{{Game.image}}" class="form-control" type="text" id="image" name="image" placeholder="Ex: http://lien.vers-l-image.com/img.jpeg">
+  </div>
+
+  <div class="form-group">
+    <label for="date">Date</label>
+    <input value="{{Game.date}}" class="form-control" type="date" id="date" name="date">
+  </div>
+
+  <div class="form-group">
+    <label for="lat">Latitude</label>
+    <input value="{{Game.lat}}" class="form-control" type="text" id="lat" name="lat" placeholder="Latitude">
+  </div>
+
+  <div class="form-group">
+    <label for="lng">Longitude</label>
+    <input value="{{Game.lng}}" class="form-control" type="text" id="lng" name="lng" placeholder="Longitude">
+  </div>
+
+  <div class="text-center">
+    <button type="submit" class="btn btn-primary">
+      Update
+    </button>
+  </div>
+</form>

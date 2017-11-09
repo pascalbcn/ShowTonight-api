@@ -1,15 +1,15 @@
 // Liste des erreurs que l'API peut renvoyer
 
 const list = {
-  noShowsError: {
+  noGamesError: {
     code: 500,
-    error: 'noShowsError',
-    error_description: 'La base ne contient pas de show'
+    error: 'noGamesError',
+    error_description: 'La base ne contient pas de Game'
   },
-  noShowError: {
+  noGameError: {
     code: 500,
-    error: 'noShowError',
-    error_description: 'Ce show n\'existe pas'
+    error: 'noGameError',
+    error_description: 'Ce Game n\'existe pas'
   },
   noBookingsError: {
     code: 500,
