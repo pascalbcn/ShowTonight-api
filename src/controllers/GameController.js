@@ -90,7 +90,7 @@ export default {
     Games()
     .then((data) => {
       // data contient une liste de Games
-      res.render('Game/Games', { Games: data });
+      res.render('game/Games', { Games: data });
     }, (err) => {
       console.log(err);
       res.status(Errors(err).code).send(Errors(err));
@@ -100,7 +100,7 @@ export default {
   getGame: (req, res) => {
     Game(req.params.id)
     .then((data) => {
-      res.render('Game/Game', { Game: data });
+      res.render('game/Game', { Game: data });
     }, (err) => {
       console.log(err);
       res.status(Errors(err).code).send(Errors(err));
@@ -108,12 +108,11 @@ export default {
   },
 
   getCreateGame: (req, res) => {
-    res.render('Game/createGame');
+    res.render('game/createGame');
   },
 
   postCreateGame: (req, res) => {
     let Game = {
-      id: req.body.id,
       team_A: req.body.team_A,
       team_B: req.body.team_B,
       date: req.body.date,
@@ -125,7 +124,7 @@ export default {
 
     createGame(Game)
     .then((data) => {
-      res.redirect('/Games');
+      res.redirect('/game/Games');
     }, (err) => {
       console.log(err);
       res.status(Errors(err).code).send(Errors(err));

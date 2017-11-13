@@ -66,7 +66,7 @@ server.post('/seeddb', SeedDbController.seedDb);
 // Routes pour les vues
 server.get('/', HomeController.getIndex);
 
-server.get('/Games', GameController.getGames);
+server.get('/games', GameController.getGames);
 server.get('/Games/id/:id', GameController.getGame);
 server.get('/Games/create', GameController.getCreateGame);
 server.post('/Games/create', GameController.postCreateGame);

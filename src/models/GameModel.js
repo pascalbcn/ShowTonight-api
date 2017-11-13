@@ -9,7 +9,7 @@ let Schema = new mongoose.Schema({
   id: { type: Number },         // Game number
   team_A: { type: String },     // home team
   team_B: { type: String },  // away team
-  date: { type: Number },     // Game date
+  date: { type: Date },     // Game date
   stadium: { type: String },        // stadium
   league: { type: String },        // league
   goals_team_A: { type: Number },    // goals scored by home team 
@@ -20,7 +20,7 @@ let Schema = new mongoose.Schema({
 let Model = mongoose.model('Game', Schema);
 
 export default {
-  seedGame: () => {
+  seedGames: () => {
     let promises = [];
     for (let Game of GameSeeds){
       promises[promises.legth] = Model.create(Game);
