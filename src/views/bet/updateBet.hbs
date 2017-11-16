@@ -1,6 +1,6 @@
 <h1>Update Bet</h1>
 
-<form action="/bet/update/{{Bet.id}}" method="post">
+<form action="/Bet/update/{{Bet.id}}" method="post">
   <div class="form-group">
     <label for="username">Username*</label>
     <input value="{{Bet.username}}" class="form-control" type="text" id="username" name="username" placeholder="Nom" required>
@@ -9,7 +9,7 @@
   <div class="form-group">
     <label for="BetId">Bet*</label>
     <select class="form-control" id="BetId" name="BetId" required>
-      {{#list bets
+      {{#list Bets
    }}
       <option value="{{id}}" {{selected ../Bet.BetId id}}>{{name}}</option>
       {{/list}}
@@ -17,8 +17,8 @@
   </div>
 
   <div class="form-group">
-    <label for="bet">bet*</label>
-    <input value="{{Bet.bet}}" class="form-control" type="number" id="bet" name="bet" placeholder="Nombre de places" required>
+    <label for="Bet">Bet*</label>
+    <input value="{{Bet.Bet}}" class="form-control" type="number" id="Bet" name="Bet" placeholder="Nombre de places" required>
   </div>
 
   <div class="text-center">

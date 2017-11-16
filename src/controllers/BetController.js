@@ -95,9 +95,9 @@ export default {
 
   postCreateBet: (req, res) => {
     let bet = {
-      id: req.body.id,
+      username: req.body.username,
       GameId: req.body.GameId,
-      
+      result: req.body.result
     };
 
     createBet(bet)
@@ -171,9 +171,9 @@ export default {
 
   postCreateBetApi: (req, res) => {
     let bet = {
-      id: req.body.id,
+      username: req.body.username,
       GameId: req.body.GameId,
-      
+      result: req.body.result
     };
 
     createBet(bet)

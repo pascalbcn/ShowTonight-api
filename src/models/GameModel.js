@@ -32,7 +32,7 @@ export default {
     return Model.find({}).exec();
   },
 
-  getGames: (_id) => {
+  getGame: (_id) => {
     return Model.findOne({ _id }).exec();
   },
 
