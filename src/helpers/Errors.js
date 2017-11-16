@@ -4,7 +4,7 @@ const list = {
   noGamesError: {
     code: 500,
     error: 'noGamesError',
-    error_description: 'La base ne contient pas de Game'
+    error_description: 'La putain de base ne contient pas de Game'
   },
   noGameError: {
     code: 500,

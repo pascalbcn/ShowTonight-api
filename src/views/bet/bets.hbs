@@ -1,32 +1,32 @@
-<h1>Bookings</h1>
+<h1>Bets</h1>
 
 <table class="table">
  <thead>
    <th>Username</th>
-   <th>ShowId</th>
-   <th>Seats</th>
+   <th>GameId</th>
+   <th>bet</th>
    <th>Actions</th>
  </thead>
 
-  {{#list bookings}}
+  {{#list bets}}
 
   <tr>
     <td>
-      <a class="btn btn-secondary btn-sm" href="/bookings/id/{{id}}" role="button">
+      <a class="btn btn-secondary btn-sm" href="/bets/id/{{id}}" role="button">
         {{username}}
       </a>
     </td>
     <td>
-      {{showId}}
+      {{GameId}}
     </td>
     <td>
-      {{seats}}
+      {{bet}}
     </td>
     <td>
-      <a class="btn btn-outline-secondary btn-sm" href="/bookings/update/{{id}}" role="button">
+      <a class="btn btn-outline-secondary btn-sm" href="/bets/update/{{id}}" role="button">
         Update
       </a>
-      <a class="btn btn-outline-danger btn-sm" href="/bookings/delete/{{id}}" role="button">
+      <a class="btn btn-outline-danger btn-sm" href="/bets/delete/{{id}}" role="button">
         Delete
       </a>
     </td>
@@ -36,7 +36,7 @@
 </table>
 
 <div class="text-center">
-  <a class="btn btn-primary" href="/bookings/create" role="button">
-    Add a booking
+  <a class="btn btn-primary" href="/bets/create" role="button">
+    Add a bet
   </a>
 </div>
