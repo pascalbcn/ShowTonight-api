@@ -124,7 +124,7 @@ export default {
 
     createGame(Game)
     .then((data) => {
-      res.redirect('/game/Games');
+      res.redirect('/games');
     }, (err) => {
       console.log(err);
       res.status(Errors(err).code).send(Errors(err));
@@ -143,14 +143,11 @@ export default {
 
   postUpdateGame: (req, res) => {
     let Game = {
-      id: req.body.id,
       team_A: req.body.team_A,
       team_B: req.body.team_B,
       date: req.body.date,
       stadium: req.body.stadium,
       league: req.body.league,
-      goals_team_A: req.body.goals_team_A,
-      goals_team_B: req.body.goals_team_B
     };
 
     updateGame(req.params.id, Game)
@@ -165,7 +162,7 @@ export default {
   getDeleteGame: (req, res) => {
     deleteGame(req.params.id)
     .then((data) => {
-      res.redirect('/Games');
+      res.redirect('/games');
     }, (err) => {
       console.log(err);
       res.status(Errors(err).code).send(Errors(err));
@@ -221,14 +218,11 @@ export default {
 
   postUpdateGameApi: (req, res) => {
     let Game = {
-      id: req.body.id,
       team_A: req.body.team_A,
       team_B: req.body.team_B,
       date: req.body.date,
       stadium: req.body.stadium,
-      league: req.body.league,
-      goals_team_A: req.body.goals_team_A,
-      goals_team_B: req.body.goals_team_B
+      league: req.body.league
     };
 
     updateGame(req.params.id, Game)

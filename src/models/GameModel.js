@@ -37,29 +37,22 @@ export default {
   },
 
   createGame: (Game) => {
-    return Model.create({
-      id: Game.id,
+    return Model.create({ 
       team_A: Game.team_A,
       team_B: Game.team_B,
       date: Game.date,
       stadium: Game.stadium,
-      league: Game.league,
-      goals_team_A: Game.goals_team_A,
-      goals_team_B: Game.goals_team_B,
-      
+      league: Game.league   
     });
   },
 
   updateGame: (_id, Game) => {
     return Model.findOneAndUpdate({ _id }, {
-      id: Game.id,
       team_A: Game.team_A,
       team_B: Game.team_B,
       date: Game.date,
       stadium: Game.stadium,
-      league: Game.league,
-      goals_team_A: Game.goals_team_A,
-      goals_team_B: Game.goals_team_B
+      league: Game.league
     }, {upsert: true}).exec();
   },
 
@@ -67,7 +60,7 @@ export default {
     return Model.remove({}).exec();
   },
 
-  deleteGames: (_id) => {
+  deleteGame: (_id) => {
     return Model.remove({ _id }).exec();
   },
 };

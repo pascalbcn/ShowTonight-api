@@ -2,53 +2,33 @@
 
 <form action="/Games/create" method="post">
   <div class="form-group">
-    <label for="team_A">Name*</label>
-    <input class="form-control" type="text" id="team_A" name="team_A" placeholder="Nom du concert" required>
+    <label for="team_A">Home team</label>
+    <input class="form-control" type="text" id="team_A" name="team_A" placeholder="Team name" required>
   </div>
 
   <div class="form-group">
-    <label for="venue">Venue*</label>
-    <input class="form-control" type="text" id="venue" name="venue" placeholder="Nom de la salle" required>
-  </div>
-
-  <div class="form-group">
-    <label for="description">Description</label>
-    <input class="form-control" type="text" id="description" name="description" placeholder="Description du concert">
-  </div>
-
-  <div class="form-group">
-    <label for="capacity">Capacity</label>
-    <input class="form-control" type="number" id="capacity" name="capacity" placeholder="Ex: 500">
-  </div>
-
-  <div class="form-group">
-    <label for="price">Price*</label>
-    <input class="form-control" type="number" id="price" name="price" placeholder="Ex: 30" required>
-  </div>
-
-  <div class="form-group">
-    <label for="image">Image</label>
-    <input class="form-control" type="text" id="image" name="image" placeholder="Ex: http://lien.vers-l-image.com/img.jpeg">
+    <label for="team_B">Away Team</label>
+    <input class="form-control" type="text" id="team_B" name="team_B" placeholder="Team name" required>
   </div>
 
   <div class="form-group">
     <label for="date">Date</label>
-    <input class="form-control" type="date" id="date" name="date">
+    <input class="form-control" type="date" id="date" name="date" placeholder="All date formats">
   </div>
 
   <div class="form-group">
-    <label for="lat">Latitude</label>
-    <input class="form-control" type="text" id="lat" name="lat" placeholder="Latitude">
+    <label for="stadium">Stadium</label>
+    <input class="form-control" type="text" id="stadium" name="stadium" placeholder="Stadium name">
   </div>
 
   <div class="form-group">
-    <label for="lng">Longitude</label>
-    <input class="form-control" type="text" id="lng" name="lng" placeholder="Longitude">
+    <label for="league">League</label>
+    <input class="form-control" type="text" id="league" name="league" placeholder="Ex: Ligue 1, Liga, Serie A etc." required>
   </div>
 
   <div class="text-center">
     <button type="submit" class="btn btn-primary">
-      Create
+      Create your game
     </button>
   </div>
 </form>
