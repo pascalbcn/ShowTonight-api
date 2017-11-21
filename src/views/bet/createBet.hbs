@@ -7,10 +7,10 @@
   </div>
 
   <div class="form-group">
-    <label for="GameId">Matchs</label>
+    <label for="GameId">Game</label>
     <select class="form-control" id="GameId" name="GameId" required>
       {{#list Games}}
-      <option value={{id}}>{{team_A}} - {{team_B}}</option>
+      <option value={{Gameid}}>{{team_A}} - {{team_B}}</option>
       {{/list}}
     </select>
   </div>
@@ -21,7 +21,6 @@
       <option value="Home team wins">Home Team wins </option>
       <option value="Away team wins">Away team wins </option>
       <option value="Draw">Draw </option>
-
        </select>
   </div>
 
