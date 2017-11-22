@@ -6,7 +6,7 @@ mongoose.Promise = global.Promise;
 let Schema = new mongoose.Schema({
   id: { type: Number }, // le numero du pari
   username: { type: String }, // le nom de l'utilisateur
-  GameId: { type: String },   // l'id du show
+  GameId: { type: String },   // l'id du game
      // je ne sais pas comment écrire la partie won comme elle est vide au départ
   result: { type: String }, // le detail du pari
   createdAt: { type: Date },  // la date de création de la réservation
