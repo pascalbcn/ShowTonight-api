@@ -19,10 +19,9 @@ const bets = () => {
         id: bet.id,
         username: bet.username,
         GameId: bet.GameId,
-        
-        bet: bet.bet,
+        result: bet.result,
         createdAt: bet.createdAt,
-        updatedAt: bet.updatedAt,
+        updatedAt: bet.updatedAt
       }
     }
     return _.sortBy(response, 'username');
@@ -40,10 +39,9 @@ const bet = (_id) => {
       id: data.id,
       username: data.username,
       GameId: data.GameId,
-      
-      bet: data.bet,
+      result: data.result,
       createdAt: data.createdAt,
-      updatedAt: data.updatedAt,
+      updatedAt: data.updatedAt
     };
     return response;
   });

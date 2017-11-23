@@ -10,7 +10,7 @@ let Schema = new mongoose.Schema({
      // je ne sais pas comment écrire la partie won comme elle est vide au départ
   result: { type: String }, // le detail du pari
   createdAt: { type: Date },  // la date de création de la réservation
-  updatedAt: { type: Date },  // la date de modification de la réservation
+  updatedAt: { type: Date }  // la date de modification de la réservation
 });
 
 let Model = mongoose.model('Bet', Schema);
