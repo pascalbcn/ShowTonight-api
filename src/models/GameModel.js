@@ -6,9 +6,9 @@ mongoose.Promise = global.Promise;
 import GameSeeds from "../helpers/GameSeeds";
 
 let Schema = new mongoose.Schema({
-  id: { type: Number },         // Game number
+  id: { type: String },         // Game number
   team_A: { type: String },     // home team
-  team_B: { type: String },  // away team
+  team_B: { type: String },  // away team_B
   date: { type: Date },     // Game date
   stadium: { type: String },        // stadium
   league: { type: String },        // league

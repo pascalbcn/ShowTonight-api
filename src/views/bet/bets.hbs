@@ -2,6 +2,7 @@
 
 <table class="table">
  <thead>
+   <th>Id</th>
    <th>Username</th>
    <th>GameId</th>
    <th>Result</th>
@@ -13,11 +14,16 @@
   <tr>
     <td>
       <a class="btn btn-secondary btn-sm" href="/bets/id/{{id}}" role="button">
-        {{username}}
+        {{id}}
       </a>
     </td>
     <td>
-      {{GameId}}
+      {{username}}
+    </td>
+    <td>
+      <a class="btn btn-secondary btn-sm" href="/Games/id/{{GameId}}" role="button">
+        {{GameId}}
+      </a>
     </td>
     <td>
       {{result}}

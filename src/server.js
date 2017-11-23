@@ -75,7 +75,7 @@ server.post('/Games/update/:id', GameController.postUpdateGame);
 server.get('/Games/delete/:id', GameController.getDeleteGame);
 
 server.get('/bets', BetController.getBets);
-server.get('/bets/id/:id', BetController.getBet);
+server.get('/bets/id/', BetController.getBet);
 server.get('/bets/create', BetController.getCreateBet);
 server.post('/bets/create', BetController.postCreateBet);
 server.get('/bets/update/:id', BetController.getUpdateBet);

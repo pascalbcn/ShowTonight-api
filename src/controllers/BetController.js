@@ -74,7 +74,7 @@ export default {
   getBet: (req, res) => {
     bet(req.params.id)
     .then((data) => {
-      res.render('bet/bet', { bet: data });
+      res.render('bet/bet', { Bet: data });
     }, (err) => {
       console.log(err);
       res.status(Errors(err).code).send(Errors(err));

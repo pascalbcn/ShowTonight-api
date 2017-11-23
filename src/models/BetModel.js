@@ -4,7 +4,7 @@ import mongoose from "mongoose";
 mongoose.Promise = global.Promise;
 
 let Schema = new mongoose.Schema({
-  id: { type: Number }, // le numero du pari
+  betid: { type: String }, // le numero du pari
   username: { type: String }, // le nom de l'utilisateur
   GameId: { type: String },   // l'id du game
      // je ne sais pas comment écrire la partie won comme elle est vide au départ
@@ -36,7 +36,6 @@ export default {
 
   updateBet: (_id, bet) => {
     return Model.findOneAndUpdate({ _id }, {
-      id: bet.id,
       username: bet.username,
       GameId: bet.GameId,
       result: bet.result,
