@@ -84,6 +84,7 @@ export default {
   getCreateBet: (req, res) => {
     GameModel.getGames()
     .then((data) => {
+      console.log(data);
       res.render('bet/createBet', { Games: data });
     }, (err) => {
       console.log(err);
@@ -113,7 +114,8 @@ export default {
       GameModel.getGames(),
     ])
     .then((data) => {
-      res.render('bet/updateBet', { bet: data[0], Games: data[1] });
+      console.log(data[1]);
+      res.render('bet/updateBet', { Bet: data[0], Games: data[1], Results: ["Home team wins", "Away team wins", "Draw"] });
     }, (err) => {
       console.log(err);
       res.status(Errors(err).code).send(Errors(err));
@@ -124,7 +126,8 @@ export default {
     let bet = {
       id: req.body.id,
       GameId: req.body.GameId,
-      
+      result: req.body.result,
+      username: req.body.username
     };
 
     updateBet(req.params.id, bet)
