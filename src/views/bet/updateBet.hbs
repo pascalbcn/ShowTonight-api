@@ -8,9 +8,9 @@
 
   <div class="form-group">
     <label for="BetId">Bet*</label>
-    <select class="form-control" id="BetId" name="BetId" required>
-      {{#list Bets}}
-      <option value="{{id}}" {{selected ../Bet.BetId id}}>{{name}}</option>
+    <select class="form-control" id="GameId" name="GameId" required>
+      {{#list Games
+      <option value="{{_id}}" {{selected ../Bet.GameId id}}>{{team_A}} - {{team_B}}</option>
       {{/list}}
     </select>
   </div>

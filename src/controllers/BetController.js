@@ -150,7 +150,9 @@ export default {
   postUpdateBet: (req, res) => {
     let bet = {
       id: req.body.id,
-      GameId: req.body.GameId
+      GameId: req.body.GameId,
+      result: req.body.result,
+      username: req.body.username
     };
 
     updateBet(req.params.id, bet)
