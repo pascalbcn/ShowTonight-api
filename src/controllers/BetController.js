@@ -28,6 +28,7 @@ const bets = () => {
         return value;
       });
 
+      console.log(game);
       response[response.length] = {
         id: bet.id,
         username: bet.username,
