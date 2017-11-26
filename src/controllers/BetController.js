@@ -16,7 +16,7 @@ const bets = () => {
     let response = [];
     for (let bet of data){
 
-      let game = GameModel.getBet(bet.GameId);
+      let game = GameModel.getGame(bet.GameId);
 
       response[response.length] = {
         id: bet.id,
@@ -38,10 +38,12 @@ const bet = (_id) => {
       throw new Error('noBetError');
     }
 
+    let game = GameModel.getGame(data.GameId);
+
     let response = {
       id: data.id,
       username: data.username,
-      GameId: data.GameId,
+      GameId: game.date,
       result: data.result,
       createdAt: data.createdAt,
       updatedAt: data.updatedAt
