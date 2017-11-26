@@ -2,13 +2,23 @@
 
 <form action="/Games/update/{{Game.id}}" method="post">
   <div class="form-group">
-    <label for="team_A">Home team</label>
+    <label for="team_A">Home Team</label>
     <input value="{{Game.team_A}}" class="form-control" type="text" id="team_A" name="team_A" placeholder="Team name" required>
   </div>
 
   <div class="form-group">
     <label for="team_B">Away Team</label>
     <input value="{{Game.team_B}}" class="form-control" type="text" id="team_B" name="team_B" placeholder="Team name" required>
+  </div>
+
+  <div class="form-group">
+    <label for="logoTeam_A">Home Team logo URL</label>
+    <input value="{{Game.logoTeam_A}}" class="form-control" type="text" id="logoTeam_A" name="logoTeam_A" placeholder="Logo URL" required>
+  </div>
+
+  <div class="form-group">
+    <label for="logoTeam_B">Away Team logo URL</label>
+    <input value="{{Game.logoTeam_B}}" class="form-control" type="text" id="logoTeam_B" name="logoTeam_B" placeholder="Logo URL" required>
   </div>
 
   <div class="form-group">

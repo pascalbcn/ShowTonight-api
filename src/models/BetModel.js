@@ -9,8 +9,7 @@ let Schema = new mongoose.Schema({
   GameId: { type: String },   // l'id du game
      //TODO je ne sais pas comment écrire la partie won comme elle est vide au départ
   result: { type: String }, // le detail du pari
-  createdAt: { type: Date },  // la date de création de la réservation
-  updatedAt: { type: Date }  // la date de modification de la réservation
+  updatedAt: { type: Date }  // la date de modification/création de la réservation
 });
 
 let Model = mongoose.model('Bet', Schema);
@@ -29,7 +28,6 @@ export default {
       username: bet.username,
       GameId: bet.GameId,
       result: bet.result,
-      createdAt: new Date(),
       updatedAt: new Date()
     });
   },

@@ -4,6 +4,7 @@ import Errors from "../helpers/Errors";
 
 // Récupération du model
 import GameModel from "../models/GameModel";
+import BetModel from "../models/BetModel";
 
 const Games = () => {
   // On fait appel à la fonction getGames du model
@@ -20,22 +21,42 @@ const Games = () => {
     // On prépare ici la réponse que va renvoyer l'api, il s'agit d'un tableau
     let response = [];
     for (let Game of data){
-      // On parcours data. pour chaque élément, on garde les champs name, venue, description, capacity, price, image et date
+      // On parcours data pour chaque élément, on garde les champs name, venue, description, capacity, price, image et date
+      let bets = BetModel.getBets().then((data) => {
+
+        let betsOnGame = [];
+
+        for (let bet of data){
+
+          if (bet.gameId == Game._id) {
+            betsOnGame[betsOnGame.length] = {
+              username: bet.username,
+              result: bet.result
+            };
+          }
+
+        }
+
+        return bets;
+      })
+
       response[response.length] = {
         id: Game._id,
         team_A: Game.team_A,
         team_B: Game.team_B,
+        logoTeam_A: Game.logoTeam_A,
+        logoTeam_B: Game.logoTeam_B,
         date: Game.date,
         stadium: Game.stadium,
         league: Game.league,
         goals_team_A: Game.goals_team_A,
-        goals_team_B: Game.goals_team_B
-        
+        goals_team_B: Game.goals_team_B,
+        bets: bets
       }
     }
 
-    // Avant d'envoyer la réponse on la tri par ordre alphabétique croissant sur le champs name
-    return _.sortBy(response, 'team_A');
+    // Avant d'envoyer la réponse on la tri par ordre chronologique croissant
+    return _.sortBy(response, 'date').reverse();
   });
 }
 
@@ -51,16 +72,37 @@ const Game = (_id) => {
       throw new Error('noGameError');
     }
 
+    let bets = BetModel.getBets().then((data) => {
+
+      let betsOnGame = [];
+
+      for (let bet of data){
+
+        if (bet.gameId == _id) {
+          betsOnGame[betsOnGame.length] = {
+            username: bet.username,
+            result: bet.result
+          };
+        }
+
+      }
+
+      return bets;
+    })
+
     // On prépare ici la réponse que va renvoyer l'api, il s'agit d'un élement
     let response = {
       id: data._id,
       team_A: data.team_A,
       team_B: data.team_B,
+      logoTeam_A: Game.logoTeam_A,
+      logoTeam_B: Game.logoTeam_B,
       date: data.date,
       stadium: data.stadium,
       league: data.league,
       goals_team_A: data.goals_team_A,
-      goals_team_B: data.goals_team_B
+      goals_team_B: data.goals_team_B,
+      bets: bets
     };
     return response;
   });
@@ -115,6 +157,8 @@ export default {
     let Game = {
       team_A: req.body.team_A,
       team_B: req.body.team_B,
+      logoTeam_A: req.body.logoTeam_A,
+      logoTeam_B: req.body.logoTeam_B,
       date: req.body.date,
       stadium: req.body.stadium,
       league: req.body.league,
@@ -145,6 +189,8 @@ export default {
     let Game = {
       team_A: req.body.team_A,
       team_B: req.body.team_B,
+      logoTeam_A: req.body.logoTeam_A,
+      logoTeam_B: req.body.logoTeam_B,
       date: req.body.date,
       stadium: req.body.stadium,
       league: req.body.league,
@@ -200,6 +246,8 @@ export default {
       id: req.body.id,
       team_A: req.body.team_A,
       team_B: req.body.team_B,
+      logoTeam_A: req.body.logoTeam_A,
+      logoTeam_B: req.body.logoTeam_B,
       date: req.body.date,
       stadium: req.body.stadium,
       league: req.body.league,
@@ -220,6 +268,8 @@ export default {
     let Game = {
       team_A: req.body.team_A,
       team_B: req.body.team_B,
+      logoTeam_A: req.body.logoTeam_A,
+      logoTeam_B: req.body.logoTeam_B,
       date: req.body.date,
       stadium: req.body.stadium,
       league: req.body.league

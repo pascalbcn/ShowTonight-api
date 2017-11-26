@@ -9,12 +9,14 @@ let Schema = new mongoose.Schema({
   id: { type: String },         // Game number
   team_A: { type: String },     // home team
   team_B: { type: String },  // away team_B
+  logoTeam_A: { type: String },     // l'URL du logo
+  logoTeam_B: { type: String },  // l'URL du logo
   date: { type: Date },     // Game date
   stadium: { type: String },        // stadium
   league: { type: String },        // league
-  goals_team_A: { type: Number },    // goals scored by home team 
+  goals_team_A: { type: Number },    // goals scored by home team
   goals_team_B: { type: Number },       // goals scored by away team
- 
+
 });
 
 let Model = mongoose.model('Game', Schema);
@@ -37,12 +39,14 @@ export default {
   },
 
   createGame: (Game) => {
-    return Model.create({ 
+    return Model.create({
       team_A: Game.team_A,
       team_B: Game.team_B,
+      logoTeam_A: Game.logoTeam_A,
+      logoTeam_B: Game.logoTeam_B,
       date: Game.date,
       stadium: Game.stadium,
-      league: Game.league   
+      league: Game.league
     });
   },
 
@@ -50,6 +54,8 @@ export default {
     return Model.findOneAndUpdate({ _id }, {
       team_A: Game.team_A,
       team_B: Game.team_B,
+      logoTeam_A: Game.logoTeam_A,
+      logoTeam_B: Game.logoTeam_B,
       date: Game.date,
       stadium: Game.stadium,
       league: Game.league

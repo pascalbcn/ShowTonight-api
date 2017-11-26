@@ -16,18 +16,28 @@ const bets = () => {
     let response = [];
     for (let bet of data){
 
-      let game = GameModel.getGame(bet.GameId);
+      let game = GameModel.getGame(bet.GameId).then((data) => {
+        let response = {
+          team_A: data.team_A,
+          team_B: data.team_B,
+          logoTeam_A: data.logoTeam_A,
+          logoTeam_B: data.logoTeam_B,
+          goals_team_A: data.goals_team_A,
+          goals_team_B: data.goals_team_B
+        };
+        return response;
+      });
 
       response[response.length] = {
         id: bet.id,
         username: bet.username,
-        GameId: game.date,
+        GameId: bet.GameId,
         result: bet.result,
-        createdAt: bet.createdAt,
-        updatedAt: bet.updatedAt
+        updatedAt: bet.updatedAt,
+        game: game
       }
     }
-    return _.sortBy(response, 'username');
+    return _.sortBy(response, 'updatedAt').reverse();
   });
 }
 
@@ -38,15 +48,25 @@ const bet = (_id) => {
       throw new Error('noBetError');
     }
 
-    let game = GameModel.getGame(data.GameId);
+    let game = GameModel.getGame(bet.GameId).then((data) => {
+      let response = {
+        team_A: data.team_A,
+        team_B: data.team_B,
+        logoTeam_A: data.logoTeam_A,
+        logoTeam_B: data.logoTeam_B,
+        goals_team_A: data.goals_team_A,
+        goals_team_B: data.goals_team_B
+      };
+      return response;
+    });
 
     let response = {
       id: data.id,
       username: data.username,
-      GameId: game.date,
+      GameId: data.GameId,
       result: data.result,
-      createdAt: data.createdAt,
-      updatedAt: data.updatedAt
+      updatedAt: data.updatedAt,
+      game: game
     };
     return response;
   });
