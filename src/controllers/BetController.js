@@ -17,7 +17,7 @@ const bets = () => {
     for (let bet of data){
 
       let game = GameModel.getGame(bet.GameId).then((data) => {
-        let response = {
+        let value = {
           team_A: data.team_A,
           team_B: data.team_B,
           logoTeam_A: data.logoTeam_A,
@@ -25,7 +25,7 @@ const bets = () => {
           goals_team_A: data.goals_team_A,
           goals_team_B: data.goals_team_B
         };
-        return response;
+        return value;
       });
 
       response[response.length] = {
@@ -54,7 +54,7 @@ const bet = (_id) => {
     }
 
     let game = GameModel.getGame(bet.GameId).then((data) => {
-      let response = {
+      let value = {
         team_A: data.team_A,
         team_B: data.team_B,
         logoTeam_A: data.logoTeam_A,
@@ -62,7 +62,7 @@ const bet = (_id) => {
         goals_team_A: data.goals_team_A,
         goals_team_B: data.goals_team_B
       };
-      return response;
+      return value;
     });
 
     let response = {
