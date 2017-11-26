@@ -7,7 +7,7 @@ let Schema = new mongoose.Schema({
   betid: { type: String }, // le numero du pari
   username: { type: String }, // le nom de l'utilisateur
   GameId: { type: String },   // l'id du game
-     // je ne sais pas comment écrire la partie won comme elle est vide au départ
+     //TODO je ne sais pas comment écrire la partie won comme elle est vide au départ
   result: { type: String }, // le detail du pari
   createdAt: { type: Date },  // la date de création de la réservation
   updatedAt: { type: Date }  // la date de modification de la réservation

@@ -15,10 +15,13 @@ const bets = () => {
 
     let response = [];
     for (let bet of data){
+
+      let game = GameModel.getBet(bet.GameId);
+
       response[response.length] = {
         id: bet.id,
         username: bet.username,
-        GameId: bet.GameId,
+        GameId: game.date,
         result: bet.result,
         createdAt: bet.createdAt,
         updatedAt: bet.updatedAt
@@ -124,7 +127,7 @@ export default {
     let bet = {
       id: req.body.id,
       GameId: req.body.GameId,
-      
+
     };
 
     updateBet(req.params.id, bet)
@@ -187,7 +190,7 @@ export default {
     let bet = {
       id: req.body.id,
       GameId: req.body.GameId,
-      
+
     };
 
     updateBet(req.params.id, bet)
