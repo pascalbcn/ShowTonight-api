@@ -65,6 +65,7 @@ const bet = (_id) => {
       return value;
     });
 
+    console.log(game);
     let response = {
       id: data.id,
       username: data.username,
