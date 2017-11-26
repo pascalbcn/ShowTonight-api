@@ -11,7 +11,7 @@ export default {
         out = out + options.fn(items[i]);
       }
       return out;
-    },
+   },
     selected: (foo, bar) => {
       console.log('foo', foo, 'bar', bar);
       return foo == bar ? ' selected' : ' ';
