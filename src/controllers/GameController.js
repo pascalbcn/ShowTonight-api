@@ -178,7 +178,7 @@ export default {
   getUpdateGame: (req, res) => {
     Game(req.params.id)
     .then((data) => {
-      res.render('Game/updateGame', { Game: data });
+      res.render('game/updateGame', { Game: data });
     }, (err) => {
       console.log(err);
       res.status(Errors(err).code).send(Errors(err));
