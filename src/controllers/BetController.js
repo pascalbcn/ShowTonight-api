@@ -34,12 +34,12 @@ const bets = () => {
         GameId: bet.GameId,
         result: bet.result,
         updatedAt: bet.updatedAt,
-        team_A: game.body.team_A,
-        team_B: game.body.team_B,
-        logoTeam_A: game.body.logoTeam_A,
-        logoTeam_B: game.body.logoTeam_B,
-        goals_team_A: game.body.goals_team_A,
-        goals_team_B: game.body.goals_team_B
+        team_A: game.team_A,
+        team_B: game.team_B,
+        logoTeam_A: game.logoTeam_A,
+        logoTeam_B: game.logoTeam_B,
+        goals_team_A: game.goals_team_A,
+        goals_team_B: game.goals_team_B
       }
     }
     return _.sortBy(response, 'updatedAt').reverse();
