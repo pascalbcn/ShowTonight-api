@@ -17,14 +17,14 @@ const bets = () => {
     for (let bet of data){
 
       let game = GameModel.getGame(bet.GameId).then((data) => {
-        let value = [
-          data.team_A,
-          data.team_B,
-          data.logoTeam_A,
-          data.logoTeam_B,
-          data.goals_team_A,
-          data.goals_team_B
-        ];
+        let value = {
+          team_A: data.team_A,
+          team_B: data.team_B,
+          logoTeam_A: data.logoTeam_A,
+          logoTeam_B: data.logoTeam_B,
+          goals_team_A: data.goals_team_A,
+          goals_team_B: data.goals_team_B
+        };
         return value;
       });
 
@@ -34,12 +34,12 @@ const bets = () => {
         GameId: bet.GameId,
         result: bet.result,
         updatedAt: bet.updatedAt,
-        team_A: game[0],
-        team_B: game[1],
-        logoTeam_A: game[2],
-        logoTeam_B: game[3],
-        goals_team_A: game[4],
-        goals_team_B: game[5]
+        team_A: game.team_A,
+        team_B: game.team_B,
+        logoTeam_A: game.logoTeam_A,
+        logoTeam_B: game.logoTeam_B,
+        goals_team_A: game.goals_team_A,
+        goals_team_B: game.goals_team_B
       }
     }
     return _.sortBy(response, 'updatedAt').reverse();
