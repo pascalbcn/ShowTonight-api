@@ -10,6 +10,7 @@
    <th>Date</th>
    <th>Stadium</th>
    <th>League</th>
+   <th>Challenges</th>
    <th>Actions</th>
  </thead>
 
@@ -31,7 +32,7 @@
       {{logoTeam_A}}
     </td>
     <td>
-      {{logoTeam_B}}
+      {{logoTeam_B}}w
     </td>
     <td>
       {{date}}
@@ -41,6 +42,11 @@
     </td>
     <td>
       {{league}}
+    </td>
+     <td>
+       <a class="btn btn-outline-secondary btn-sm" href="/Games/ChallengesOnGame/{{id}}" role="button">
+        View Challenges
+      </a>
     </td>
     <td>
       <a class="btn btn-outline-secondary btn-sm" href="/Games/update/{{id}}" role="button">

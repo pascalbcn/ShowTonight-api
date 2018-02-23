@@ -1,0 +1,53 @@
+<h1>ChallengesForGame</h1>
+
+<table class="table">
+ <thead>
+   <th>Id</th>
+   <th>Owner</th>
+   <th>Match Id</th>
+   <th>Mise d'entrée</th>
+   <th>Visibilité</th>
+   <th>Actions</th>
+ </thead>
+
+  {{#list ChallengesOnGame}}
+
+  <tr>
+    <td>
+      <a class="btn btn-secondary btn-sm" href="/Challenges/id/{{id}}" role="button">
+        {{id}}
+      </a>
+    </td>
+    <td>
+      {{username}}
+    </td>
+    <td>
+      <a class="btn btn-secondary btn-sm" href="/Games/id/{{GameId}}" role="button">
+        {{GameId}}
+      </a>
+    </td>
+    <td>
+      {{Visibility}}
+    </td>
+    <td>
+      <a class="btn btn-outline-secondary btn-sm" href="/Challenges/update/{{id}}" role="button">
+        Join
+      </a>
+      <a class="btn btn-outline-secondary btn-sm" href="/Challenges/update/{{id}}" role="button">
+        Update
+      </a>
+      <a class="btn btn-outline-danger btn-sm" href="/Challenges/delete/{{id}}" role="button">
+        Delete
+      </a>
+    </td>
+  </tr>
+
+
+  {{/list}}
+</table>
+
+<div class="text-center">
+  <a class="btn btn-primary" href="/Challenges/create" role="button">
+    Add a Challenge
+  </a>
+</div>

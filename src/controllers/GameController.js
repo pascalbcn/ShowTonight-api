@@ -4,7 +4,7 @@ import Errors from "../helpers/Errors";
 
 // Récupération du model
 import GameModel from "../models/GameModel";
-import BetModel from "../models/BetModel";
+import ChallengeModel from "../models/ChallengeModel";
 
 const Games = () => {
   // On fait appel à la fonction getGames du model
@@ -18,45 +18,27 @@ const Games = () => {
       throw new Error('noGamesError');
     }
 
+    else {
     // On prépare ici la réponse que va renvoyer l'api, il s'agit d'un tableau
     let response = [];
-    for (let Game of data){
-      // On parcours data pour chaque élément, on garde les champs name, venue, description, capacity, price, image et date
-      let bets = BetModel.getBets().then((data) => {
-
-        let betsOnGame = [];
-
-        for (let bet of data){
-
-          if (bet.gameId == Game._id) {
-            betsOnGame[betsOnGame.length] = {
-              username: bet.username,
-              result: bet.result
-            };
-          }
-
-        }
-
-        return bets;
-      })
-
+    for (let Game of data) {
+      // On parcours data. pour chaque élément, on garde les champs name, venue, description, capacity, price, image et date
       response[response.length] = {
         id: Game._id,
         team_A: Game.team_A,
         team_B: Game.team_B,
-        logoTeam_A: Game.logoTeam_A,
-        logoTeam_B: Game.logoTeam_B,
         date: Game.date,
         stadium: Game.stadium,
         league: Game.league,
         goals_team_A: Game.goals_team_A,
-        goals_team_B: Game.goals_team_B,
-        bets: bets
+        goals_team_B: Game.goals_team_B
+        
       }
     }
 
     // Avant d'envoyer la réponse on la tri par ordre chronologique croissant
     return _.sortBy(response, 'date').reverse();
+  }
   });
 }
 
@@ -72,24 +54,7 @@ const Game = (_id) => {
       throw new Error('noGameError');
     }
 
-    let bets = BetModel.getBets().then((data) => {
-
-      let betsOnGame = [];
-
-      for (let bet of data){
-
-        if (bet.gameId == _id) {
-          betsOnGame[betsOnGame.length] = {
-            username: bet.username,
-            result: bet.result
-          };
-        }
-
-      }
-
-      return bets;
-    })
-
+    else {
     // On prépare ici la réponse que va renvoyer l'api, il s'agit d'un élement
     let response = {
       id: data._id,
@@ -101,12 +66,36 @@ const Game = (_id) => {
       stadium: data.stadium,
       league: data.league,
       goals_team_A: data.goals_team_A,
-      goals_team_B: data.goals_team_B,
-      bets: bets
+      goals_team_B: data.goals_team_B
     };
     return response;
+  }
   });
 }
+
+const ChallengesForGame = (_id) => {
+  return ChallengeModel.getChallengesByGameId(_id).then( (data) => {
+      if (data === null) {
+        // Si data est vide, nous renvoyons l'erreur 'noGameError'
+        throw new Error('noChallengeError');
+      }
+
+      else {
+      // On prépare ici la réponse que va renvoyer l'api, il s'agit d'un élement
+     let response = [] ;
+      for (let Challenge of data) {
+      
+          response[response.length] = {
+          id: Challenge.id,
+          username: Challenge.username,
+          AmountStart: Challenge.AmountStart,
+          AmountEnd: Challenge.AmountEnd,
+          updatedAt: Challenge.updatedAt
+      } ;}
+      return _.sortBy(response, 'date').reverse();
+    }
+  });
+} 
 
 const createGame = (Game) => {
   // On fait appel à la fonction createGame du model
@@ -209,6 +198,16 @@ export default {
     deleteGame(req.params.id)
     .then((data) => {
       res.redirect('/games');
+    }, (err) => {
+      console.log(err);
+      res.status(Errors(err).code).send(Errors(err));
+    });
+  },
+
+ getChallengesOnGame: (req, res) => {
+  ChallengesForGame(req.params.id)
+    .then((data) => {
+      res.render('Challenge/ChallengesOnGame', { ChallengesOnGame: data });
     }, (err) => {
       console.log(err);
       res.status(Errors(err).code).send(Errors(err));

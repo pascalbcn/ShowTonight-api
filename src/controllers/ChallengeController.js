@@ -1,22 +1,23 @@
-// Controller de la route '/bets'
+// Controller de la route '/Challenges'
 import _ from "lodash";
 import Errors from "../helpers/Errors";
 
 // Récupération du model
-import BetModel from "../models/BetModel";
+import ChallengeModel from "../models/ChallengeModel";
 import GameModel from "../models/GameModel";
+import BetModel from "../models/BetModel";
 
-const bets = () => {
-  return BetModel.getBets()
+const Challenges = () => {
+  return ChallengeModel.getChallenges()
   .then((data) => {
     if (data === null) {
-      throw new Error('noBetsError');
+      throw new Error('noChallengesError');
     }
 
     let response = [];
-    for (let bet of data){
+    for (let Challenge of data){
 
-      let game = GameModel.getGame(bet.GameId).then((data) => {
+      let game = GameModel.getGame(Challenge.GameId).then((data) => {
         let value = {
           team_A: data.team_A,
           team_B: data.team_B,
@@ -29,11 +30,15 @@ const bets = () => {
       });
 
       response[response.length] = {
-        id: bet.id,
-        username: bet.username,
-        GameId: bet.GameId,
-        result: bet.result,
-        updatedAt: bet.updatedAt,
+        id: Challenge.id,
+        username: Challenge.username,
+        GameId: Challenge.GameId,
+        AmountStart: Challenge.AmountStart,
+        Score1: Challenge.Score1,
+        Score2: Challenge.Score2,
+        User2: Challenge.User2,
+        AmountEnd: Challenge.AmountEnd,
+        updatedAt: Challenge.updatedAt,
         team_A: game.team_A,
         team_B: game.team_B,
         logoTeam_A: game.logoTeam_A,
@@ -46,14 +51,14 @@ const bets = () => {
   });
 }
 
-const bet = (_id) => {
-  return BetModel.getBet(_id)
+const Challenge = (_id) => {
+  return ChallengeModel.getChallenge(_id)
   .then((data) => {
     if (data === null) {
-      throw new Error('noBetError');
+      throw new Error('noChallengeError');
     }
 
-    let game = GameModel.getGame(bet.GameId).then((data) => {
+    let game = GameModel.getGame(Challenge.GameId).then((data) => {
       let value = {
         team_A: data.team_A,
         team_B: data.team_B,
@@ -82,111 +87,172 @@ const bet = (_id) => {
   });
 }
 
-const createBet = (bet) => {
-  return BetModel.createBet(bet);
+const createChallenge = (Challenge) => {
+  return ChallengeModel.createChallenge(Challenge);
 }
 
-const updateBet = (id, bet) => {
-  return BetModel.updateBet(id, bet);
+const updateChallenge = (id, Challenge) => {
+  return ChallengeModel.updateChallenge(id, Challenge);
 }
 
-const deleteBet = (id) => {
-  return BetModel.deleteBet(id);
+const deleteChallenge = (id) => {
+  return ChallengeModel.deleteChallenge(id);
 }
+
+const BetsForChallenge = (_id) => {
+  return BetModel.getBetsByChallengeId(_id).then( (data) => {
+      if (data === null) {
+        // Si data est vide, nous renvoyons l'erreur 'noGameError'
+        throw new Error('Pas encore de bet!');
+      }
+
+      else {
+      // On prépare ici la réponse que va renvoyer l'api, il s'agit d'un élement
+     let response = [] ;
+      for (let Bet of data) {
+      
+          response[response.length] = {
+          id: Bet.id,
+          ChallengeId: Bet.ChallengeId,
+          username: Bet.username,
+          goals_team_A: Bet.goals_team_A,
+          goals_team_B: Bet.goals_team_B,
+          updatedAt: Bet.updatedAt
+      } ;}
+      return _.sortBy(response, 'date').reverse();
+    }
+  });
+} 
+
+
+
 
 export default {
   // Controller des views
-  getBets: (req, res) => {
-    bets()
+  getChallenges: (req, res) => {
+    Challenges()
     .then((data) => {
-      res.render('bet/bets', { bets: data });
+      res.render('Challenge/Challenges', { Challenges: data });
     }, (err) => {
       console.log(err);
       res.status(Errors(err).code).send(Errors(err));
     });
   },
 
-  getBet: (req, res) => {
-    bet(req.params.id)
+  getChallenge: (req, res) => {
+    Challenge(req.params.id)
     .then((data) => {
-      res.render('bet/bet', { Bet: data });
+      res.render('Challenge/Challenge', { Challenge: data });
     }, (err) => {
       console.log(err);
       res.status(Errors(err).code).send(Errors(err));
     });
   },
 
-  getCreateBet: (req, res) => {
+  getCreateChallenge: (req, res) => {
     GameModel.getGames()
     .then((data) => {
       console.log(data);
-      res.render('bet/createBet', { Games: data });
+      res.render('Challenge/createChallenge', { Games: data });
     }, (err) => {
       console.log(err);
       res.status(Errors(err).code).send(Errors(err));
     });
   },
 
-  postCreateBet: (req, res) => {
-    let bet = {
+  postCreateChallenge: (req, res) => {
+    let Challenge = {
       username: req.body.username,
       GameId: req.body.GameId,
       result: req.body.result
     };
 
-    createBet(bet)
+    createChallenge(Challenge)
     .then((data) => {
-      res.redirect('/bets');
+      res.redirect('/Challenges');
     }, (err) => {
       console.log(err);
       res.status(Errors(err).code).send(Errors(err));
     });
   },
 
-  getUpdateBet: (req, res) => {
+  getUpdateChallenge: (req, res) => {
     Promise.all([
-      bet(req.params.id),
+      Challenge(req.params.id),
       GameModel.getGames(),
     ])
     .then((data) => {
       console.log(data[1]);
-      res.render('bet/updateBet', { Bet: data[0], Games: data[1], Results: ["Home team wins", "Away team wins", "Draw"] });
+      res.render('Challenge/updateChallenge', { Challenge: data[0], Games: data[1], Results: ["Home team wins", "Away team wins", "Draw"] });
     }, (err) => {
       console.log(err);
       res.status(Errors(err).code).send(Errors(err));
     });
   },
 
-  postUpdateBet: (req, res) => {
-    let bet = {
+  postUpdateChallenge: (req, res) => {
+    let Challenge = {
       id: req.body.id,
       GameId: req.body.GameId,
       result: req.body.result,
       username: req.body.username
     };
 
-    updateBet(req.params.id, bet)
+    updateChallenge(req.params.id, Challenge)
     .then((data) => {
-      res.redirect('/bets');
+      res.redirect('/Challenges');
     }, (err) => {
       console.log(err);
       res.status(Errors(err).code).send(Errors(err));
     });
   },
 
-  getDeleteBet: (req, res) => {
-    deleteBet(req.params.id)
+  getDeleteChallenge: (req, res) => {
+    deleteChallenge(req.params.id)
     .then((data) => {
-      res.redirect('/bets');
+      res.redirect('/Challenges');
     }, (err) => {
       console.log(err);
       res.status(Errors(err).code).send(Errors(err));
     });
   },
+
+
+getBetsOnChallenges: (req, res) => {
+    Bets()
+    .then((data) => {
+      res.render('/Games/ChallengesOnGame/:id', { Challenges: data });
+    }, (err) => {
+      console.log(err);
+      res.status(Errors(err).code).send(Errors(err));
+    });
+  },
+
+
+postCreateBetOnChallenge: (req, res) => {
+    let Bet = {
+      username: req.body.username,
+      goals_team_A: req.body.goals_team_A,
+      goals_team_B: req.body.goals_team_B
+    };
+
+    createBet(Bet)
+    .then((data) => {
+      res.redirect('/Games/ChallengesOnGame/:id');
+    }, (err) => {
+      console.log(err);
+      res.status(Errors(err).code).send(Errors(err));
+    });
+  },
+
+
+
+
+
 
   // Controller des Apis
-  getBetsApi: (req, res) => {
-    bets()
+  getChallengesApi: (req, res) => {
+    Challenges()
     .then((data) => {
       res.send(data);
     }, (err) => {
@@ -195,8 +261,8 @@ export default {
     });
   },
 
-  getBetApi: (req, res) => {
-    bet(req.params.id)
+  getChallengeApi: (req, res) => {
+    Challenge(req.params.id)
     .then((data) => {
       res.send(data);
     }, (err) => {
@@ -205,14 +271,14 @@ export default {
     });
   },
 
-  postCreateBetApi: (req, res) => {
-    let bet = {
+  postCreateChallengeApi: (req, res) => {
+    let Challenge = {
       username: req.body.username,
       GameId: req.body.GameId,
       result: req.body.result
     };
 
-    createBet(bet)
+    createChallenge(Challenge)
     .then((data) => {
       res.send('ok');
     }, (err) => {
@@ -221,14 +287,14 @@ export default {
     });
   },
 
-  postUpdateBetApi: (req, res) => {
-    let bet = {
+  postUpdateChallengeApi: (req, res) => {
+    let Challenge = {
       id: req.body.id,
       GameId: req.body.GameId,
 
     };
 
-    updateBet(req.params.id, bet)
+    updateChallenge(req.params.id, Challenge)
     .then((data) => {
       res.send('ok');
     }, (err) => {
@@ -237,8 +303,8 @@ export default {
     });
   },
 
-  postDeleteBetApi: (req, res) => {
-    deleteBet(req.params.id)
+  postDeleteChallengeApi: (req, res) => {
+    deleteChallenge(req.params.id)
     .then((data) => {
       res.send('ok');
     }, (err) => {

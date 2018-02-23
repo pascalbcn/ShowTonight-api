@@ -16,10 +16,12 @@ let Schema = new mongoose.Schema({
   league: { type: String },        // league
   goals_team_A: { type: Number },    // goals scored by home team
   goals_team_B: { type: Number },       // goals scored by away team
-
+  BetsOnGame: { type: Array }
 });
 
 let Model = mongoose.model('Game', Schema);
+
+
 
 export default {
   seedGames: () => {
@@ -46,7 +48,7 @@ export default {
       logoTeam_B: Game.logoTeam_B,
       date: Game.date,
       stadium: Game.stadium,
-      league: Game.league
+      league: Game.league,
     });
   },
 
@@ -58,7 +60,9 @@ export default {
       logoTeam_B: Game.logoTeam_B,
       date: Game.date,
       stadium: Game.stadium,
-      league: Game.league
+      league: Game.league,
+      goals_team_A: Game.goals_team_A,
+      goals_team_B: Game.goals_team_B,
     }, {upsert: true}).exec();
   },
 

@@ -4,12 +4,12 @@ import mongoose from "mongoose";
 mongoose.Promise = global.Promise;
 
 let Schema = new mongoose.Schema({
-  betid: { type: String }, // le numero du pari
+  id: { type: String }, // le de l'Bet
   username: { type: String }, // le nom de l'utilisateur
-  GameId: { type: String },   // l'id du game
-     //TODO je ne sais pas comment écrire la partie won comme elle est vide au départ
-  result: { type: String }, // le detail du pari A CHANGER
-  updatedAt: { type: Date }  // la date de modification/création de la réservation
+  ChallengeId: { type: String },   // l'id du game: { type: Number },
+  goals_team_A: { type: Number},
+  goals_team_B: { type: Number},
+  date: { type: Date }  // l
 });
 
 let Model = mongoose.model('Bet', Schema);
@@ -23,29 +23,33 @@ export default {
     return Model.findOne({ _id }).exec();
   },
 
-  createBet: (bet) => {
-    return Model.create({
-      username: bet.username,
-      GameId: bet.GameId,
-      result: bet.result,
-      updatedAt: new Date()
-    });
-  },
-
-  updateBet: (_id, bet) => {
+  
+  CreateBet: (_id, bet) => {
     return Model.findOneAndUpdate({ _id }, {
-      username: bet.username,
-      GameId: bet.GameId,
-      result: bet.result,
-      updatedAt: new Date()
+      username: Bet.username,
+      Betid: Bet.Betid,
+      goals_team_A: Bet.Betid,
+      goals_team_B: Bet.Betid,
+      date: new Date(),
     }, {upsert: true}).exec();
-  },
+    },
 
-  deleteBets: () => {
-    return Model.remove({}).exec();
-  },
+ getBetsByChallengeId: (ChallengeId) => {
+    let matchingBets = [];
+    return Model.find({}).exec().then( bets => {
+      bets.map( bets => {
+        if (bet.ChallengeId = ChallengeId) {
+            matchingBets.push(bet);
+        }
+      })
+      return matchingBets;
+    })
+  }
 
-  deleteBet: (_id) => {
-    return Model.remove({ _id }).exec();
-  },
-};
+
+
+
+
+  };
+
+

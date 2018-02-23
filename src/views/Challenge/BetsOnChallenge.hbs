@@ -1,0 +1,35 @@
+<h1>ChallengesForGame</h1>
+
+<table class="table">
+ <thead>
+   <th>Id</th>
+   <th>Username</th>
+   <th>Score</th>
+ </thead>
+
+  {{#list BetsOnChallenge}}
+
+
+  <tr>
+    <td>
+      <a class="btn btn-secondary btn-sm" href="/Challenges/id/{{id}}" role="button">
+        {{id}}
+      </a>
+    </td>
+    <td>
+      {{username}}
+    </td>
+    <td>
+      {{goals_team_A}} -  {{goals_team_B}}
+    </td>
+  </tr>
+
+
+  {{/list}}
+</table>
+
+<div class="text-center">
+  <a class="btn btn-primary" href="/Challenges/createBetOnChallenge" role="button">
+    Add a Bet
+  </a>
+</div>

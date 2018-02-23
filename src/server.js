@@ -17,7 +17,7 @@ import HandlebarsConfig from "./helpers/HandlebarsConfig";
 import SeedDbController from "./controllers/SeedDbController";
 import HomeController from "./controllers/HomeController";
 import GameController from "./controllers/GameController";
-import BetController from "./controllers/BetController";
+import ChallengeController from "./controllers/ChallengeController";
 
 // Configuration du serveur
 const viewsPath = __dirname + '/views/';
@@ -74,13 +74,18 @@ server.get('/Games/update/:id', GameController.getUpdateGame);
 server.post('/Games/update/:id', GameController.postUpdateGame);
 server.get('/Games/delete/:id', GameController.getDeleteGame);
 
-server.get('/bets', BetController.getBets);
-server.get('/bets/id/:id', BetController.getBet);
-server.get('/bets/create', BetController.getCreateBet);
-server.post('/bets/create', BetController.postCreateBet);
-server.get('/bets/update/:id', BetController.getUpdateBet);
-server.post('/bets/update/:id', BetController.postUpdateBet);
-server.get('/bets/delete/:id', BetController.getDeleteBet);
+server.get('/Games/ChallengesOnGame/:id', GameController.getChallengesOnGame);
+
+server.get('/Challenges', ChallengeController.getChallenges);
+server.get('/Challenges/id/:id', ChallengeController.getChallenge);
+server.get('/Challenges/create', ChallengeController.getCreateChallenge);
+server.post('/Challenges/create', ChallengeController.postCreateChallenge);
+server.get('/Challenges/update/:id', ChallengeController.getUpdateChallenge);
+server.post('/Challenges/update/:id', ChallengeController.postUpdateChallenge);
+server.get('/Challenges/delete/:id', ChallengeController.getDeleteChallenge);
+
+//server.get('/Challenges/BetsOnChallenge/:id', ChallengeController.getBetsOnChallenge);
+
 
 // Routes pour les APIs
 server.get('/api/', HomeController.getIndexApi);
@@ -91,8 +96,8 @@ server.post('/api/Games/create', GameController.postCreateGameApi);
 server.post('/api/Games/update/:id', GameController.postUpdateGameApi);
 server.post('/api/Games/delete/:id', GameController.postDeleteGameApi);
 
-server.get('/api/bets', BetController.getBetsApi);
-server.get('/api/bets/id/:id', BetController.getBetApi);
-server.post('/api/bets/create', BetController.postCreateBetApi);
-server.post('/api/bets/update/:id', BetController.postUpdateBetApi);
-server.post('/api/bets/delete/:id', BetController.postDeleteBetApi);
+server.get('/api/Challenge', ChallengeController.getChallengeApi);
+server.get('/api/Challenge/id/:id', ChallengeController.getChallengeApi);
+server.post('/api/Challenge/create', ChallengeController.postCreateChallengeApi);
+server.post('/api/Challenge/update/:id', ChallengeController.postUpdateChallengeApi);
+server.post('/api/Challenge/delete/:id', ChallengeController.postDeleteChallengeApi);

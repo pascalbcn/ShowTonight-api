@@ -1,0 +1,20 @@
+<h1>Challenge</h1>
+
+<div>
+  <div>username : {{Challenge.username}}</div>
+  <div>GameId : {{Challenge.GameId}}</div>
+  <div>Mise d'entrée : {{Challenge.AmountStart}}</div>
+  <div>Visibility : {{Challenge.Visibility}}</div>
+</div>
+
+<div class="text-center">
+  <a class="btn btn-primary" href="/Challenges/create" role="button">
+    Add a Challenge
+  </a>
+  <a class="btn btn-secondary" href="/Challenges/update/{{Challenge.id}}" role="button">
+    Update
+  </a>
+  <a class="btn btn-danger" href="/Challenges/delete/{{Challenge.id}}" role="button">
+    Delete
+  </a>
+</div>
